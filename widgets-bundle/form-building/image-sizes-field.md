@@ -1,4 +1,5 @@
 # Image Size
+
 The image size field allows the user to specifically select a desired [image size](https://developer.wordpress.org/reference/functions/add_image_size/). This gives the user option of using a larger, or smaller image based on the context the widget is being used in rather than enforcing a specific size of the image (for example, `thumbnail` or `full`).
 
 ## Example
@@ -7,11 +8,11 @@ $form_options = array(
 	'image' => array(
 		'type' => 'media',
 		'library' => 'image',
-		'label' => __(' Background Image', 'widget-form-fields-text-domain' ),
-	),	
+		'label' => __(' Background Image', 'siteorigin-docs' ),
+	),
 	'image_size' => array(
 		'type' => 'image-size',
-		'label' => __( 'Background Image size', 'widget-form-fields-text-domain' ),
+		'label' => __( 'Background Image size', 'siteorigin-docs' ),
 	)
 );
 ```
@@ -32,7 +33,7 @@ if( ! empty( $instance['image'] ) ) {
 ```
 
 The above PHP will:
-1. Check to ensure an image is set. 
+1. Check to ensure an image is set.
 2. Check if an image size is set.
   - If no size is set, default to full.
   - If size is set, use `image_size`.

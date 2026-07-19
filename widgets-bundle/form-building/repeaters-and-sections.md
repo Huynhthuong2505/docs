@@ -1,24 +1,25 @@
-# Repeaters and sections
+# Repeaters and Sections
+
 ## Repeaters
-### Basic usage
+### Basic Usage
 Repeaters provide a way to repeat a group of form fields any number of times. The group of fields to be repeated are specified similarly to a section. Initially the repeater is empty and only displays the header label and the 'Add' button. When the user clicks the 'Add' button, an item containing the specified group of fields is added to the repeater in it's collapsed state, where only the item label, remove button and expand/collapse toggle are visible. Clicking anywhere on this item header, except on the remove button, will toggle the expanded/collapsed state. Clicking on the remove button will trigger a warning asking the user to confirm the action and then, on confirmation, remove the item from the repeater.
  
-### Example 1 - Basic usage
+### Example 1 - Basic Usage
 Form options input:
 ```php
 $form_options = array(
 	'a_repeater' => array(
 		'type' => 'repeater',
-		'label' => __( 'A repeating repeater.' , 'widget-form-fields-text-domain' ),
-		'item_name'  => __( 'Repeater item', 'siteorigin-widgets' ),
+		'label' => __( 'A repeating repeater.' , 'siteorigin-docs' ),
+		'item_name'  => __( 'Repeater item', 'siteorigin-docs' ),
 		'fields' => array(
 			'repeat_text' => array(
 				'type' => 'text',
-				'label' => __( 'A text field in a repeater item.', 'widget-form-fields-text-domain' )
+				'label' => __( 'A text field in a repeater item.', 'siteorigin-docs' )
 			),
 			'repeat_checkbox' => array(
 				'type' => 'checkbox',
-				'label' => __( 'A checkbox in a repeater item.', 'widget-form-fields-text-domain' )
+				'label' => __( 'A checkbox in a repeater item.', 'siteorigin-docs' )
 			)
 		)
 	)
@@ -54,20 +55,20 @@ get_template_variables( $instance, $args ) {
 }
 ```
 
-### Using item labels
+### Using Item Labels
 By default, repeaters use the 'item_name' value as the item label in item headers. Repeaters can be configured to use a specific input field's value as the item label, which is displayed in the item header. This is done using the 'item_label' configuration value, which is an associative array that describes how the repeater may retrieve the item labels from an HTML elements as it is updated. It requires three properties, namely:
 - selector: `string` A JQuery selector which is used to find an element from which to retrieve the item label. Any JQuery selector is valid here.
 - update_event: `string` The javascript event on which to bind and update the item label. Defaults to 'change' event.
 - value_method: `string` The javascript function which should be used to retrieve the item label from an element. Defaults to `val()` method.
 
-### Example 2 - Using item labels
+### Example 2 - Using Item Labels
 Form options input:
 ```php
 $form_options = array(
 	'a_repeater' => array(
 		'type' => 'repeater',
-		'label' => __( 'A repeating repeater.' , 'widget-form-fields-text-domain' ),
-		'item_name'  => __( 'Repeater item', 'siteorigin-widgets' ),
+		'label' => __( 'A repeating repeater.' , 'siteorigin-docs' ),
+		'item_name'  => __( 'Repeater item', 'siteorigin-docs' ),
 		'item_label' => array(
 			'selector'     => "[id*='repeat_text']",
 			'update_event' => 'change',
@@ -76,11 +77,11 @@ $form_options = array(
 		'fields' => array(
 			'repeat_text' => array(
 				'type' => 'text',
-				'label' => __( 'A text field in a repeater item.', 'widget-form-fields-text-domain' )
+				'label' => __( 'A text field in a repeater item.', 'siteorigin-docs' )
 			),
 			'repeat_checkbox' => array(
 				'type' => 'checkbox',
-				'label' => __( 'A checkbox in a repeater item.', 'widget-form-fields-text-domain' )
+				'label' => __( 'A checkbox in a repeater item.', 'siteorigin-docs' )
 			)
 		)
 	)
@@ -92,6 +93,27 @@ In the above example the repeater has been configured to use the 'repeat_text' f
 Repeater containing two items using the `item_label` property:
 ![Widget Form Repeater 4](../images/form-field-type-repeater-4.png)
 
+### Limiting Repeater Items (`max_items`)
+
+Use the `max_items` option to cap how many items a repeater can contain. When the limit is reached, the **Add** button is disabled and no further items can be added.
+
+#### Example 3 – Limiting Items
+Form options input:
+```php
+$form_options = array(
+    'feature_list' => array(
+        'type'       => 'repeater',
+        'label'      => __( 'Feature list', 'siteorigin-docs' ),
+        'item_name'  => __( 'Feature', 'siteorigin-docs' ),
+        'max_items'  => 3,  // Allow up to three features.
+        'fields'     => array(
+            'feature_text' => array(
+                'type'  => 'text',
+                'label' => __( 'Feature text', 'siteorigin-docs' ),
+            ),
+        ),
+    ),
+);
 
 ---
 
@@ -104,16 +126,16 @@ Form options input:
 $form_options = array(
 	'a_section' => array(
 		'type' => 'section',
-		'label' => __( 'A section containing related fields.' , 'widget-form-fields-text-domain' ),
+		'label' => __( 'A section containing related fields.' , 'siteorigin-docs' ),
 		'hide' => true,
 		'fields' => array(
 			'grouped_text' => array(
 				'type' => 'text',
-				'label' => __( 'A grouped text field', 'widget-form-fields-text-domain' )
+				'label' => __( 'A grouped text field', 'siteorigin-docs' )
 			),
 			'grouped_checkbox' => array(
 				'type' => 'checkbox',
-				'label' => __( 'A grouped checkbox', 'widget-form-fields-text-domain' )
+				'label' => __( 'A grouped checkbox', 'siteorigin-docs' )
 			)
 		)
 	)

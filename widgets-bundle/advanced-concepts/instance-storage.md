@@ -14,29 +14,29 @@ Your widget won't have instance storage enabled by default. You can enable it by
 
 ```php
 class My_Newsletter_Widget extends SiteOrigin_Widget {
-    function __construct() {
+	function __construct() {
 
-        parent::__construct(
-            'sow-newsletter',
-            __('Newsletter Widget', 'my-plugin'),
-            array(
-                // Enable instance storage
-                'instance_storage' => true,
-            ),
-            array(
+		parent::__construct(
+			'sow-newsletter',
+			__( 'Newsletter Widget', 'siteorigin-docs' ),
+			array(
+				// Enable instance storage
+				'instance_storage' => true,
+			),
+			array(
 
-            ),
-            array(
-                'api_key' => array(
-                    'type' => 'text',
-                    'label' => __('API Key', 'my-plugin'),
-                ),
-            ),
-            plugin_dir_path(__FILE__)
-        );
-    }
-    
-    // Rest of the widget goes here
+			),
+			array(
+				'api_key' => array(
+					'type' => 'text',
+					'label' => __( 'API Key', 'siteorigin-docs' ),
+				),
+			),
+			plugin_dir_path( __FILE__ )
+		);
+	}
+
+	// Rest of the widget goes here
 }
 ```
 
@@ -50,7 +50,7 @@ If your widget has `instance_storage` enabled, then your widget template files w
 <input type="hidden" name="storage_hash" value="<?php echo esc_attr($storage_hash) ?>" />
 ```
 
-### Retreiving Instance Storage
+### Retrieving Instance Storage
 
 You're free to handle the user's form details however you want, but you'll need to call `$this->get_stored_instance( $storage_hash );`. The easiest way to handle a request would be to create an [ajax handler](https://codex.wordpress.org/AJAX_in_Plugins).
 
@@ -58,14 +58,14 @@ You're free to handle the user's form details however you want, but you'll need 
 function my_action_callback() {
     // You should do some nonce checking here
     if( empty($_POST['_wp_nonce']) || !wp_verify_nonce( $_GET['_wp_nonce'], 'action' ) ) return;
-    
+
     $widget = new My_Newsletter_Widget;
     $instance = $widget->get_stored_instance( $_POST['storage_hash'] );
     $key = $instance['api_key'];
-    
+
     // Now we can handle the rest of the input from $_POST.
     SomeNewsletterAPI::signup( $key, $_POST['email'] );
-    
+
     // Either die or redirect the user to a success page
     wp_die();
 }

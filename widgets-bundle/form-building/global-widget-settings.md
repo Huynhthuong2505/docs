@@ -13,7 +13,7 @@ class MyCustomWidget extends SiteOrigin_Widget {
 		// We can modify this $form array however we want.
 		$form['example'] = array(
 			'type' => 'checkbox',
-			'label' => __('Example', 'example'),
+			'label' => __( 'Example', 'siteorigin-docs' ),
 		);
 		return $form;
 	}
@@ -50,7 +50,7 @@ class MyCustomWidget extends SiteOrigin_Widget {
 
 	function modify_instance( $form ) {
 
-		if ( ! empty( $$this->get_global_settings( 'example' ) ) ) {
+		if ( ! empty( $this->get_global_settings( 'example' ) ) ) {
 			// Global example setting is enabled. Do something here.
 		}
 
@@ -68,7 +68,7 @@ The following snippet will add an example checkbox to the SiteOrigin Button Widg
 add_filter( 'siteorigin_widgets_settings_form_sow-button', function( $form_options ) {
 	$form_options['example'] = array(
 		'type' => 'checkbox',
-		'label' => __('Example', 'example'),
+		'label' => __( 'Example', 'siteorigin-docs' ),
 	);
 
 	return $form_options;

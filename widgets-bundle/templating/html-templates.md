@@ -1,4 +1,5 @@
 # HTML Templates
+
 HTML templates are used to render widgets for display on the front end. A template is included for output when the `widget()` function is called, so it has access to the widget `$instance` variable and the `$args` variable. By default, Widgets Bundle will attempt to use `tpl/default.php` in your widget directory.
 
 The template's name can be optionally overridden by using the `get_template_name()` function. By default, it must be placed in a folder named _tpl_ in the root of the widget folder.
@@ -78,8 +79,8 @@ It is considered best practice to escape all potentially unsafe data as late as 
 	<?php echo esc_html( $args['before_title'] ) ?>
 	<h1><?php echo esc_html( $title ) ?></h1>
 	<?php echo esc_html( $args['after_title'] ) ?>
-	<div class="<?php esc_attr( $style_attribute ) ?>">
-		<a href="<?php esc_url( $link_url ) ?>"><?php esc_html( $link_text ) ?></a> 
+	<div class="<?php echo esc_attr( $style_attribute ) ?>">
+		<a href="<?php echo esc_url( $link_url ) ?>"><?php echo esc_html( $link_text ) ?></a> 
 	</div>
 </div>
 ```
